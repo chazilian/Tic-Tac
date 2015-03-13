@@ -44,7 +44,7 @@ public class Other_moves {
     int maxVal(move [][] board, int turn, int player, int player2){
         int score = Integer.MIN_VALUE/90;
         if(turn==10){
-            return score = 0;
+            return 0;
         }else if(winner(board,player2)){//looking for wrost case
                     return turn-10;
         }
@@ -54,7 +54,7 @@ public class Other_moves {
                  if(board[i][j].taken_by==0){
                     board[i][j].taken_by = player;
                     score = Math.max(score, minVal(board,turn, getPlayer2(), getPlayer()));
-                    if(board[i][j].aiValue<score){
+                    if(board[i][j].aiValue<score&&score!=Integer.MAX_VALUE/90&&score!=Integer.MIN_VALUE/90){
                         board[i][j].aiValue = score;
                     }
                     board[i][j].taken_by = 0;
@@ -63,14 +63,19 @@ public class Other_moves {
                 
             }
         }
-        return score;
+        if(score!=Integer.MAX_VALUE/90&&score!=Integer.MIN_VALUE/90){
+            return score;
+        } else {
+            return 0;
+        }
+        
         
     }
     
     int minVal(move [][] board, int turn, int player, int player2){
         int score = Integer.MAX_VALUE/90;
         if(turn==10){
-            return score = 0;
+            return 0;
         } else if(winner(board,player2)){//actually looking for best value for computer
                     return 10-turn;
         }
@@ -80,14 +85,19 @@ public class Other_moves {
                 if(board[i][j].taken_by==0){
                     board[i][j].taken_by = player;
                     score = Math.min(score, maxVal(board,turn, getPlayer(), getPlayer2()));
-                    if(board[i][j].playerValue>score){//deal with winner scores. Overwriting correct scores
+                    if(board[i][j].playerValue>score&&score!=Integer.MAX_VALUE/90&&score!=Integer.MIN_VALUE/90){//deal with winner scores. Overwriting correct scores
                         board[i][j].playerValue = score;
                     }
                     board[i][j].taken_by = 0;
+                    score = Integer.MAX_VALUE/90;
                 }
             }
         }
-        return score;
+        if(score!=Integer.MAX_VALUE/90&&score!=Integer.MIN_VALUE/90){
+            return score;
+        } else {
+            return 0;
+        }
         
     }
     

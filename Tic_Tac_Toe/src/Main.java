@@ -33,9 +33,9 @@ public class Main {
         board[0][1].taken_by = 2;
         //board[0][2].taken_by = 1;
         //board[1][0].taken_by = 2;
-        //board[1][1].taken_by = 2;
-        board[1][2].taken_by = 1;
-        turn = 4;
+        //board[1][1].taken_by = 1;
+        board[1][2].taken_by = 2;
+        turn = 3;
          Other_moves play = new Other_moves(board,turn,computer);
          play.setPlayer(computer);
          play.setPlayer2(player);
@@ -119,7 +119,7 @@ public class Main {
                 } else if (board[i][j].taken_by==2){
                     System.out.print(" O"+board[i][j].value);
                 } else {
-                    if(board[i][j].aiValue>board[i][j].playerValue){
+                    if(board[i][j].aiValue>Math.abs(board[i][j].playerValue)){
                         System.out.print(" "+board[i][j].aiValue);
                     }else{
                         System.out.print(" "+board[i][j].playerValue);

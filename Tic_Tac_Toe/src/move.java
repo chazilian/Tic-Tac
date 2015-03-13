@@ -11,7 +11,7 @@ public class move {
     
     int value = 0;
     int aiValue = 0;
-    int playerValue = 100;
+    int playerValue = 0;
     int taken_by = 0;
     
     move(int taken_by, int value){
