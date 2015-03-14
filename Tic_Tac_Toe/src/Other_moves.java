@@ -46,8 +46,12 @@ public class Other_moves {
         if(turn==10){
             return 0;
         }else if(winner(board,player2)){//looking for wrost case
-                    return turn-10;
-        }
+                    return (turn-10)-2;
+        }/*else if(forkcheck(board, player2)){
+            return turn-10;         
+        }else if(forkcheck(board, player)){
+            return 10-turn;
+        }*/
         turn++;
         for(int i = 0; i< board.length;i++){
             for(int j = 0; j<board.length;j++){
@@ -77,8 +81,12 @@ public class Other_moves {
         if(turn==10){
             return 0;
         } else if(winner(board,player2)){//actually looking for best value for computer
-                    return 10-turn;
-        }
+            return (10-turn)+2;
+        }/*else if(forkcheck(board, player2)){
+            return 10-turn;         
+        } else if(forkcheck(board, player)){
+            return turn-10;
+        }*/
          turn++;
         for(int i = 0; i< board.length;i++){
             for(int j = 0; j<board.length;j++){
@@ -99,6 +107,42 @@ public class Other_moves {
             return 0;
         }
         
+    }
+    
+    private boolean forkcheck(move[][]board, int player){
+        for(int i = 0; i< board.length;i++){
+            for(int j = 0; j<board.length;j++){
+                if(board[i][j].taken_by==0){
+                    board[i][j].taken_by=player;
+                    if(fork(board,player)){
+                        board[i][j].taken_by=0;
+                        return true;   
+                    }                 
+                    board[i][j].taken_by=0;
+                }
+            }
+        }
+        return false;
+    }
+    
+    private boolean fork(move[][]board, int player){//need to prioritze x vs o. fork needs to be consise. Mixes up x & o
+        int count = 0;
+        for(int i = 0; i< board.length;i++){
+            for(int j = 0; j<board.length;j++){
+                if(board[i][j].taken_by==0){
+                    board[i][j].taken_by=player;
+                    if(winner(board,player)){
+                        count++;                       
+                    }
+                    board[i][j].taken_by=0;
+                }            
+            }
+        }
+        if(count>=2){
+            return true;
+        } else {
+            return false; 
+        }
     }
     
  /*   void first_move(){
