@@ -13,10 +13,18 @@ public class move {
     int aiValue = 0;
     int playerValue = 0;
     int taken_by = 0;
+    int row = 0;
+    int column = 0;
     
-    move(int taken_by, int value){
-        this.value = value;
+    move(int taken_by ,int row, int column){
         this.taken_by = taken_by;
+        this.row = row;
+        this.column = column;
+    }
+    
+    public void reset(){
+        aiValue = 0;
+        playerValue = 0;
     }
     
 }

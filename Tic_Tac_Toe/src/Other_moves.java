@@ -37,21 +37,20 @@ public class Other_moves {
         } else {
             maxVal(board,turn,player, player2);
         }
+       // makeMove start = new makeMove(board, player);
         return board;
         
     }
     
-    int maxVal(move [][] board, int turn, int player, int player2){
+    private int maxVal(move [][] board, int turn, int player, int player2){
         int score = Integer.MIN_VALUE/90;
         if(turn==10){
             return 0;
-        }else if(winner(board,player2)){//looking for wrost case
-                    return (turn-10)-2;
-        }/*else if(forkcheck(board, player2)){
+        }else if(winner(board,player2)){//looking for worst case
+                    return (turn-10)-1;
+        }else if(fork(board)){
             return turn-10;         
-        }else if(forkcheck(board, player)){
-            return 10-turn;
-        }*/
+        }
         turn++;
         for(int i = 0; i< board.length;i++){
             for(int j = 0; j<board.length;j++){
@@ -76,18 +75,16 @@ public class Other_moves {
         
     }
     
-    int minVal(move [][] board, int turn, int player, int player2){
+    private int minVal(move [][] board, int turn, int player, int player2){
         int score = Integer.MAX_VALUE/90;
         if(turn==10){
             return 0;
         } else if(winner(board,player2)){//actually looking for best value for computer
-            return (10-turn)+2;
-        }/*else if(forkcheck(board, player2)){
+            return (10-turn)+1;
+        }else if(fork(board)){
             return 10-turn;         
-        } else if(forkcheck(board, player)){
-            return turn-10;
-        }*/
-         turn++;
+        }
+        turn++;
         for(int i = 0; i< board.length;i++){
             for(int j = 0; j<board.length;j++){
                 if(board[i][j].taken_by==0){
@@ -109,78 +106,31 @@ public class Other_moves {
         
     }
     
-    private boolean forkcheck(move[][]board, int player){
+    private boolean fork(move[][]board){
+        int count1 = 0;
+        int count2 = 0;
         for(int i = 0; i< board.length;i++){
             for(int j = 0; j<board.length;j++){
                 if(board[i][j].taken_by==0){
-                    board[i][j].taken_by=player;
-                    if(fork(board,player)){
-                        board[i][j].taken_by=0;
-                        return true;   
-                    }                 
-                    board[i][j].taken_by=0;
-                }
-            }
-        }
-        return false;
-    }
-    
-    private boolean fork(move[][]board, int player){//need to prioritze x vs o. fork needs to be consise. Mixes up x & o
-        int count = 0;
-        for(int i = 0; i< board.length;i++){
-            for(int j = 0; j<board.length;j++){
-                if(board[i][j].taken_by==0){
-                    board[i][j].taken_by=player;
-                    if(winner(board,player)){
-                        count++;                       
+                    board[i][j].taken_by=1;
+                    if(winner(board,1)){
+                        count1++;                       
+                    }
+                    board[i][j].taken_by=2;
+                    if(winner(board,2)){
+                        count2++;                       
                     }
                     board[i][j].taken_by=0;
                 }            
             }
         }
-        if(count>=2){
+        if(count1>=2||count2>=2){
             return true;
         } else {
             return false; 
         }
-    }
-    
- /*   void first_move(){
-        if(getTurn()%2==1){
-            corner_move();           
-        } else {
-            if(board[0][0].taken_by!=0||board[0][2].taken_by!=0||board[2][0].taken_by!=0||board[2][2].taken_by!=0){
-                board[1][1].taken_by=getPlayer();
-            } else if(board[1][1].taken_by!=0){
-                corner_move();
-            } else {
-                int corner = rand.nextInt(3)+1;
-                if(corner%2==1){
-                    board[1][1].taken_by=getPlayer();
-                } else {
-                    corner_move();
-                }
-            }
-        }
-    }*/
-    
-   /* private void corner_move(){
-        int corner = rand.nextInt(3)+1;
-            switch(corner){
-                case 1: board[0][0].taken_by = getPlayer();
-                    break;
-                case 2: board[0][2].taken_by = getPlayer();
-                    break;
-                case 3: board[2][0].taken_by = getPlayer();
-                    break;
-                case 4: board[2][2].taken_by = getPlayer();
-                    break;
-                default: System.out.println("Invalid move");
-                        }
-    }*/
-    
-    
-    
+    }   
+    //determines if there is a winning move next round.
     private boolean winner(move[][] board, int player){
         int three_in_row = 0;
         for(int i = 0; i<=2;i++){
