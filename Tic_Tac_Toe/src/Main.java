@@ -29,12 +29,12 @@ public class Main {
                     board[i][j] = new move(0,0);
             }
         }
-        board[0][0].taken_by = 1;
-        board[0][1].taken_by = 2;
+      //  board[0][0].taken_by = 1;
+      //  board[0][1].taken_by = 2;
         //board[0][2].taken_by = 1;
         //board[1][0].taken_by = 2;
         //board[1][1].taken_by = 2;
-        board[1][2].taken_by = 1;
+      //  board[1][2].taken_by = 1;
         turn = 4;
          Other_moves play = new Other_moves(board,turn,computer);
          play.setPlayer(computer);
