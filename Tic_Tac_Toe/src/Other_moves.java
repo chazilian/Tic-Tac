@@ -1,4 +1,3 @@
-
 import java.util.Random;
 
 /*
@@ -37,9 +36,9 @@ public class Other_moves {
         } else {
             maxVal(board,turn,player, player2);
         }
-       // makeMove start = new makeMove(board, player);
+       // makeMove start = new makeMove(board, player, turn);
+       // return start.bestMove();
         return board;
-        
     }
     
     private int maxVal(move [][] board, int turn, int player, int player2){
@@ -131,7 +130,7 @@ public class Other_moves {
         }
     }   
     //determines if there is a winning move next round.
-    private boolean winner(move[][] board, int player){
+    public boolean winner(move[][] board, int player){
         int three_in_row = 0;
         for(int i = 0; i<=2;i++){
             for(int j = 0; j<=2;j++){
