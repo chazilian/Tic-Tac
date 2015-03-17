@@ -37,8 +37,8 @@ public class Other_moves {
             maxVal(board,turn,player, player2);
         }
        // makeMove start = new makeMove(board, player, turn);
+       // return start.bestMove();
         return board;
-        
     }
     
     private int maxVal(move [][] board, int turn, int player, int player2){
