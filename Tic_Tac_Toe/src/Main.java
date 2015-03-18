@@ -28,12 +28,6 @@ public class Main {
                 board[i][j] = new move(0, i, j);
             }
         }
-      //  board[0][0].taken_by = 1;
-      //  board[0][1].taken_by = 2;
-        //board[0][2].taken_by = 1;
-        //board[1][0].taken_by = 2;
-        //board[1][1].taken_by = 2;
-      //  board[1][2].taken_by = 1;
         turn = 0;
          Other_moves play = new Other_moves(board,turn,computer);
          play.setPlayer(computer);
@@ -104,6 +98,33 @@ public class Main {
             
      }while(!winner);
      }*/
+   /* private static void printBoard(move[][] board) {
+
+        System.out.println("    1   2   3 ");
+
+        for (int i = 0; i <= 2; i++) {
+            System.out.print((i + 1) + "  ");
+            for (int j = 0; j <= 2; j++) {
+                if (board[i][j].taken_by == 1) {
+                    System.out.print(" X ");
+                } else if (board[i][j].taken_by == 2) {
+                    System.out.print(" O ");
+                } else if(board[i][j].taken_by==0) {
+                    System.out.print("   ");
+                    
+                } 
+                if (j != 2) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println();
+            if (i != 2) {
+                System.out.println("   -----------");
+            }
+        }
+
+    }*/
+
     private static void printBoard(move[][] board) {
 
         System.out.println("    1   2   3 ");
@@ -133,5 +154,4 @@ public class Main {
         }
 
     }
-
 }

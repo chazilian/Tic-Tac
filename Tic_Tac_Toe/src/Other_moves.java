@@ -36,8 +36,8 @@ public class Other_moves {
         } else {
             maxVal(board,turn,player, player2);
         }
-       // makeMove start = new makeMove(board, player, turn);
-       // return start.bestMove();
+//        makeMove start = new makeMove(board, player, turn);
+//        return start.bestMove();
         return board;
     }
     

@@ -28,15 +28,17 @@ public class makeMove {
             for(int k = 0; k<board.length;k++){
                 if(board[i][k].taken_by==0){
                     playVal = Math.abs(board[i][k].playerValue);
-                    if(highestVal<board[i][k].aiValue){
+                    if(highestVal<board[i][k].aiValue&&board[i][k].aiValue>playVal){
                         highestVal = board[i][k].aiValue;
                         boardMoves.clear();
                         boardMoves.add(board[i][k]);
-                        
-                    } else if (highestVal<playVal){
+                        continue;
+                    }
+                    if (highestVal<playVal){
                         highestVal = playVal;
                         boardMoves.clear();
                         boardMoves.add(board[i][k]);
+                        continue;
                     } else if(highestVal==playVal){
                         boardMoves.add(board[i][k]);
                     } else if(highestVal==board[i][k].aiValue){
