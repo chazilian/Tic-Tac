@@ -28,30 +28,18 @@ public class Main {
                 board[i][j] = new move(0, i, j);
             }
         }
-<<<<<<< HEAD
       //  board[0][0].taken_by = 1;
       //  board[0][1].taken_by = 2;
         //board[0][2].taken_by = 1;
         //board[1][0].taken_by = 2;
         //board[1][1].taken_by = 2;
       //  board[1][2].taken_by = 1;
-        turn = 4;
+        turn = 0;
          Other_moves play = new Other_moves(board,turn,computer);
          play.setPlayer(computer);
          play.setPlayer2(player);
          play.algo(board, turn, computer, player);
          printBoard(board);
-        //works for finding next move, but fucks up when it comes to blocking player moves.
-        
-=======
-        turn = 0;
->>>>>>> work_on_AI_recursion
-        
-        Other_moves play = new Other_moves(board, turn, computer);
-        play.setPlayer(computer);
-        play.setPlayer2(player);
-        play.algo(board, turn, computer, player);
-        printBoard(board);
         //works for finding next move, but fucks up when it comes to blocking player moves.
 
     }
